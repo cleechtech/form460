@@ -1,5 +1,8 @@
+// run `gulp` or `gulp bower-install` to inject
+// script tags into index.html
+// ============================
+
 var gulp = require('gulp'),
-	connect = require('gulp-connect'),
 	bowerFiles = require('main-bower-files'),
 	inject = require("gulp-inject");
 
@@ -8,37 +11,9 @@ gulp.task('bower-install', function(){
   gulp.src('./index.html')
   	.pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower'}))
   	.pipe(gulp.dest('./'))
-})
+});
 
-// connect web server
-gulp.task('connect', function(){
-	connect.server({
-		root: [__dirname],
-		livereload: true
-	})
-})
-
-// reload index.html
-gulp.task('htmlReload', function(){
-	gulp.src('./index.html').pipe(connect.reload())
-})
-
-// reload js files
-gulp.task('jsReload', function(){
-	gulp.src('scripts/*.js').pipe(connect.reload())
-})
-
-// watch files for changes
-gulp.task('watch', function(){
-	gulp.watch([
-		'./index.html',
-		'scripts/**/*.js'
-	], ['htmlReload', 'jsReload'])	// run reload onchange
-})
-
-// register default tasks
+// register default task
 gulp.task('default', [
-	'bower-install',
-	'connect',
-	'watch'
-])
+	'bower-install'
+]);
