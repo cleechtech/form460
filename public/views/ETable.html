@@ -1,0 +1,27 @@
+<table st-table="rowCollection" class="table table-striped">
+	<thead>
+	<tr>
+		<th>Report Date</th>
+		<th>Expn Date</th>
+		<th>Amount</th>
+		<th>Payee Name</th>
+		<th>Payee City</th>
+		<th>Filer Name</th>
+		
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in rowCollection">
+		<td>{{row.firstName}}</td>
+		<td>{{row.lastName}}</td>
+		<td>{{row.birthDate}}</td>
+		<td>{{row.balance}}</td>
+		<td>{{row.email}}</td>
+	</tr>
+	</tbody>
+</table>
+
+
+<!--
+When someone clicks on a row they see the full object
+-->
