@@ -8,16 +8,9 @@ var app = angular.module('form460', [
 app.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider.state('home', {
 		url: '/',
-		templateUrl: 'views/ETable.html'
+		templateUrl: 'views/ETable.html',
+		controller: 'ETableCtrl'
 	})
 
 	$urlRouterProvider.otherwise('/')
-})
-
-app.run(function(){
-	d3.csv('/scheduleE', processData('01/01/14'), function(payments){
-
-		// campaign contribution payments made in 2014
-		console.log(payments)
-	})
 })
