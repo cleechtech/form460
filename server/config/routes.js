@@ -1,5 +1,3 @@
-// turn csv into json:
-// https://github.com/mafintosh/csv-parser
 var fs = require('fs'),
 	q = require('q'),
 	csv = require('csv-parser');
@@ -11,27 +9,28 @@ module.exports = function(server){
 	    path: '/scheduleA',
 	    handler: function(req, res){
 
-	    	res.file('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv');
+	    	// to just send the CSV file and parse it on the client
+	    	// res.file('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv');
 
 	    	// too big... runs out of memory..
-	    	// var dfd = q.defer();
-	    	// var contributions = [];
-	  //   	fs.createReadStream('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv')
-			//   .pipe(csv())
-			//   .on('data', function(cont){
-			//   	contributions.push(cont)
-			//   })
-			//   .on('error', function(err){
-			//   	dfd.reject(err);
-			//   })
-			//   .on('end', function(){
-			//   	dfd.resolve(contributions);
-			//   })
+	    	var dfd = q.defer();
+	    	var contributions = [];
+	    	fs.createReadStream('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv')
+			  .pipe(csv())
+			  .on('data', function(cont){
+			  	contributions.push(cont)
+			  })
+			  .on('error', function(err){
+			  	dfd.reject(err);
+			  })
+			  .on('end', function(){
+			  	dfd.resolve(contributions);
+			  })
 
-			// dfd.promise.then(function(conts){
-			// 	console.log('reply..')
-			// 	res(conts)
-			// })
+			dfd.promise.then(function(conts){
+				console.log('reply..')
+				res(conts)
+			})
 	    }
 	});
 

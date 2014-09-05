@@ -12,7 +12,6 @@ gulp.task('bower-install', function(){
   		// trying to remove "/public/" from the src
   		// https://github.com/ck86/main-bower-files
   		filter: function(path){
-  			console.log(path)
   			return path
   		}
 

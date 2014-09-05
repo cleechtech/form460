@@ -6,7 +6,7 @@ d3.csv('/scheduleE', processData('01/01/14'), function(data){
 	// dfdE.resolve(data);
 	$('.spinner').fadeOut('slow');
 
-	var c = crossfilter(data)
+	// var c = crossfilter(data)
 
 	_
 

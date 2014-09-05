@@ -20,6 +20,10 @@
     "angular": "~1.2.23",
     "angular-ui-router": "~0.2.11",
     "angular-smart-table": "*",
-    "crossfilter": "~1.3.9"
+    "crossfilter": "~1.3.9",
+    "angular-ui-slider": "~0.0.2"
+  },
+  "resolutions": {
+    "angular": "~1.2.23"
   }
 }
