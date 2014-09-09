@@ -3,7 +3,9 @@ var Hapi = require('hapi'),
     server = new Hapi.Server(port);
 
 // DATABASE
-var collectionData = require('./server/config/mongodb')();
+var db = require('./server/config/mongodb');
+
+var scheduleE = db.collection('scheduleE');
 
 // ROUTES
 require('./server/config/routes')(server);

@@ -7,11 +7,17 @@ var app = angular.module('form460', [
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider){
-	$stateProvider.state('home', {
-		url: '/',
-		templateUrl: 'views/ETable.html',
-		controller: 'ETableCtrl'
-	})
+	$stateProvider
+		.state('searchFiler', {
+			url: '/',
+			templateUrl: 'views/filerName.html',
+			controller: 'FilerNameCtrl'
+		})
+		.state('ETable', {
+			url: '/ETable/csv',
+			templateUrl: 'views/ETable.html',
+			controller: 'ETableCtrl'
+		})
 
 	$urlRouterProvider.otherwise('/')
 })

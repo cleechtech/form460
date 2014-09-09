@@ -2,6 +2,10 @@ var fs = require('fs'),
 	q = require('q'),
 	csv = require('csv-parser');
 
+var mongojs = require('mongojs');
+var db = mongojs('mongodb://localhost/form460');
+var scheduleE = db.collection('scheduleE');
+
 module.exports = function(server){
 	// schedule A file
 	server.route({
@@ -34,12 +38,26 @@ module.exports = function(server){
 	    }
 	});
 
-	// schedule E
+	// schedule E - send raw csv file
 	server.route({
 	    method: 'GET',
-	    path: '/scheduleE',
+	    path: '/scheduleE/raw',
 	    handler: function(req, res){
 	        res.file('./data/Form_460_-_Schedule_E_-_Payments_Made.csv')
+	    }
+	});
+
+	// ======================
+	// schedule E - database
+	// ======================
+	server.route({
+	    method: 'GET',
+	    path: '/scheduleE/db/{filerName}',
+	    handler: function(req, reply){
+	    	// search by filer of the payments name (must be EXACT match)
+	        scheduleE.find({ Filer_NamL: req.params.filerName }, function(err, docs){
+	        	reply(docs)
+	        })
 	    }
 	});
 

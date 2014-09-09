@@ -21,12 +21,15 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="spinner">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-    </div>
 
-    <div ui-view></div>
+    <ul class="nav nav-pills">
+        <li><a ui-sref='searchFiler'>Schedule E search by filer name</a></li>
+        <li><a ui-sref='ETable'>2014 Schedule E Payments Made</a></li>
+    </ul>
+    
+    <div class='container'>
+        <div ui-view></div>
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -46,8 +49,8 @@
     <script src="bower_components/angular-ui-slider/src/slider.js"></script>
     <!-- endinject -->
 
-    <script src="scripts/dataLoader.js"></script>
     <script src='scripts/app.js'></script>
+    <script src='scripts/controllers/filerName.js'></script>
     <script src='scripts/controllers/ETable.js'></script>
 </body>
 </html>
