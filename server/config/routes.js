@@ -1,7 +1,3 @@
-var fs = require('fs'),
-	q = require('q'),
-	csv = require('csv-parser');
-
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://localhost/form460');
 var scheduleE = db.collection('scheduleE');
@@ -13,28 +9,8 @@ module.exports = function(server){
 	    path: '/scheduleA',
 	    handler: function(req, res){
 
-	    	// to just send the CSV file and parse it on the client
-	    	// res.file('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv');
-
-	    	// too big... runs out of memory..
-	    	var dfd = q.defer();
-	    	var contributions = [];
-	    	fs.createReadStream('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv')
-			  .pipe(csv())
-			  .on('data', function(cont){
-			  	contributions.push(cont)
-			  })
-			  .on('error', function(err){
-			  	dfd.reject(err);
-			  })
-			  .on('end', function(){
-			  	dfd.resolve(contributions);
-			  })
-
-			dfd.promise.then(function(conts){
-				console.log('reply..')
-				res(conts)
-			})
+	    	// send the CSV file
+	    	res.file('./data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv');
 	    }
 	});
 
