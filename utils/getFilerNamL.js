@@ -7,8 +7,8 @@ var fs = require('fs'),
 	through = require('through'),
 	csv = require('csv-parser');
 
-var inputPath = path.normalize('../data/Form_460_-_Schedule_A_-_Monetary_Contributions.csv')
-var outputPath = path.normalize('../data/Schedule_A_-_Filer_NamL.txt')
+var inputPath = path.normalize('../data/Form_460_-_Schedule_E_-_Payments_Made.csv');
+var outputPath = path.normalize('../data/Schedule_E_-_Filer_NamL.csv');
 var allNames = [];
 
 fs.createReadStream(inputPath)

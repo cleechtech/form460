@@ -23,6 +23,14 @@ module.exports = function(server){
 	    }
 	});
 
+	server.route({
+	    method: 'GET',
+	    path: '/scheduleE/filerNames',
+	    handler: function(req, res){
+	        res.file('./data/Schedule_E_-_Filer_NamL.csv')
+	    }
+	});
+
 	// ======================
 	// schedule E - database
 	// ======================
