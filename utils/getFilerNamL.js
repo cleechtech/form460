@@ -11,6 +11,7 @@ var inputPath = path.normalize('../data/Form_460_-_Schedule_E_-_Payments_Made.cs
 var outputPath = path.normalize('../data/Schedule_E_-_Filer_NamL.csv');
 var allNames = [];
 
+// write list of unique Filer_NamL
 fs.createReadStream(inputPath)
   .pipe(csv())
   .pipe(through(function(cont){

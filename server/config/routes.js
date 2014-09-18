@@ -1,6 +1,8 @@
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://localhost/form460');
 var scheduleE = db.collection('scheduleE');
+var low = require('lowdb');
+var _ = require('lodash');
 
 module.exports = function(server){
 	// schedule A file
@@ -28,6 +30,16 @@ module.exports = function(server){
 	    path: '/scheduleE/filerNames',
 	    handler: function(req, res){
 	        res.file('./data/Schedule_E_-_Filer_NamL.csv')
+	    }
+	});
+
+	server.route({
+	    method: 'GET',
+	    path: '/scheduleE/payees',
+	    handler: function(req, reply){
+	        var db = low('./data/Schedule_E_-_Payees_grouped.json').object;
+	        var payees = _.keys(db);
+	        reply(payees);
 	    }
 	});
 

@@ -1,3 +1,7 @@
+a {
+  cursor: pointer;
+}
+
 /* Loading Spinner */
 .spinner {
   width: 40px;

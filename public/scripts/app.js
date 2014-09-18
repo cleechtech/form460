@@ -8,11 +8,16 @@ var app = angular.module('form460', [
 
 app.config(function($stateProvider, $urlRouterProvider){
 	$stateProvider
-		.state('searchFiler', {
+		.state('home', {
 			url: '/',
-			templateUrl: 'views/filerName.html',
-			controller: 'FilerNameCtrl'
+			templateUrl: 'views/home.html'
 		})
+		.state('scheduleE', {
+			url: '/scheduleE',
+			templateUrl: 'views/scheduleE.html',
+			controller: 'ScheduleECtrl'
+		})
+		// blahh..
 		.state('ETable', {
 			url: '/ETable/csv',
 			templateUrl: 'views/ETable.html',

@@ -1,0 +1,46 @@
+<!-- TODO: Filter by filer name, date and amount -->
+
+<div class='row'>
+	<div class='col-sm-8 col-sm-offset-1'>
+		<input type='form-control' ng-model='filerName' class='form-control' placeholder='Search by filer name'>
+		<button class='btn btn-primary'>Search</button>
+	</div>
+	<b>Example:</b> Cisneros for Treasurer
+</div>
+
+<!-- resolve function so allFilers populated automatically ( + cached ) -->
+<button ng-click='showFilers()' class='btn btn-default'>Show filers</button>
+
+<button ng-click='showPayees()' class='btn btn-default'>Show payees</button>
+
+
+<div ng-if='allFilers'>
+	<ul>
+		<li ng-repeat='filer in allFilers'>
+			<a ng-click='getFiler(filer)'>{{ filer['*'] }}</a>
+		</li>
+	</ul>
+</div>
+
+<div ng-if='allPayees'>
+	<ul>
+		<li ng-repeat='payee in allPayees'>
+			<a ng-click='getPayee(payee)'>{{ payee }}</a>
+		</li>
+	</ul>
+</div>
+
+<div ng-if='results'>
+	<h2>{{ results[0].Filer_NamL }} recieved {{ results.length }} political contributions. The first they reported on {{ results[0].Rpt_Date }} and was for {{ results[0].Amount }} the most recent they reported on {{ results[results.length - 1].Rpt_Date }} and was for {{ results[results.length - 1].Amount }}.</h2>
+
+	<h4>Here is a list of each contribution they reported:</h4>
+
+	<ul>
+		<li ng-repeat='cont in results'>
+			<p><b>Contributor:</b> {{ cont.Payee_NamL }}</p>
+			<p><b>Amount:</b> {{ cont.Amount }}</p>
+			<p><b>Date reported:</b> {{ cont.Rpt_Date }}</p>
+		</li>
+	</ul>
+	<pre>{{ results | json }}</pre>
+</div>

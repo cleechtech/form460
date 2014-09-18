@@ -5,7 +5,7 @@
     <title>From 460</title>
     
     <!-- Necessary for Github Pages 
-    <base href='/form460/' />
+    <base href='/form460/' /> 
     -->
     <meta name="description" content="form-460 san francisco code for america open data visualization d3">
     <meta name="viewport" content="width=device-width">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <!-- endinject -->
 
+    <link rel='stylesheet' href='styles/simplesidebar.css'>
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body ng-app='form460'>
@@ -21,14 +22,16 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-
-    <ul class="nav nav-pills">
-        <li><a ui-sref='searchFiler'>Schedule E search by filer name</a></li>
-        <li><a ui-sref='ETable'>2014 Schedule E Payments Made</a></li>
-    </ul>
-    
-    <div class='container'>
-        <div ui-view></div>
+    <div id="wrapper" ng-class="{'toggled': hideMenu }">
+      <div ng-include="'views/nav.html'" ng-controller='NavCtrl'></div>
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <div ui-view></div>
+            </div>
+          </div>
+        </div>
     </div>
 
     <!--[if lt IE 9]>
@@ -50,7 +53,8 @@
     <!-- endinject -->
 
     <script src='scripts/app.js'></script>
-    <script src='scripts/controllers/filerName.js'></script>
+    <script src='scripts/controllers/nav.js'></script>
+    <script src='scripts/controllers/scheduleE.js'></script>
     <script src='scripts/controllers/ETable.js'></script>
 </body>
 </html>
