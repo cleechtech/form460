@@ -30,6 +30,10 @@
 	</ul>
 </div>
 
+<div ng-if='payee'>
+	<pre>{{ payee | json }}</pre>
+</div>
+
 <div ng-if='results'>
 	<h2>{{ results[0].Filer_NamL }} recieved {{ results.length }} political contributions. The first they reported on {{ results[0].Rpt_Date }} and was for {{ results[0].Amount }} the most recent they reported on {{ results[results.length - 1].Rpt_Date }} and was for {{ results[results.length - 1].Amount }}.</h2>
 

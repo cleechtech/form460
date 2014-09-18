@@ -7,7 +7,7 @@ app.controller('ScheduleECtrl', function($scope, $http){
 
 	$scope.getFiler = function(filer){
 		var filerName = filer['*']; // sloppy
-		
+		$scope.allPayees = null;
 		$scope.allFilers = null;
 		// database request for a specific filer
 		$http.get('/scheduleE/db/' + filerName).then(function(results){
@@ -15,6 +15,24 @@ app.controller('ScheduleECtrl', function($scope, $http){
 		}, function(err){
 			console.error(err)
 			$scope.results = err;
+		})
+	};
+
+	$scope.getPayee = function(payee){
+		$scope.allPayees = null;
+		$scope.allFilers = null;
+		if(payee[0] === " "){
+			payee = payee.substr(1);
+			console.log(payee)
+		}
+
+		console.log(payee)
+		$http.get('/scheduleE/payees/' + payee).then(function(result){
+			console.log(result)
+			$scope.payee = result.data;
+		}, function(err){
+			console.error(err)
+			$scope.payee = err;
 		})
 	};
 
@@ -29,10 +47,9 @@ app.controller('ScheduleECtrl', function($scope, $http){
 
 	$scope.showPayees = function(){
 		// get all scheduleE Payees
-		d3.json('/scheduleE/payees', function(allPayees){
+		$http.get('/scheduleE/payees').then(function(result){
 			$scope.allFilers = null;
-			$scope.allPayees = allPayees;
-			$scope.$apply();
+			$scope.allPayees = result.data;
 		})
 	};
 

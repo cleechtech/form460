@@ -17,6 +17,7 @@ fs.createReadStream(inputPath)
     
   	var payment = {
   		filer_ID: cont.Filer_ID,	// who filed recieving the payment
+      lastname: cont.Payee_NamL,
       name: cont.Payee_NamF + ' ' + cont.Payee_NamL,
   		amount: cont.Amount,	// amount of payment
   		title: cont.Payee_NamT,
